@@ -1,6 +1,11 @@
-//
-// Created by Jim Daehn on 8/5/21.
-//
+/**
+ * CSC232 - Data Structures
+ * Missouri State University, Fall 2021
+ *
+ * @file    plain-box.h
+ * @author  Jim Daehn <jdaehn@missouristate.edu>
+ * @brief   PlainBox specification.
+ */
 
 #ifndef CSC232_PLAIN_BOX_H__
 #define CSC232_PLAIN_BOX_H__

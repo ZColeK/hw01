@@ -2,10 +2,9 @@
  * CSC232 - Data Structures
  * Missouri State University, Fall 2021
  *
- * @file     main.cpp
- * @authors  Jim Daehn <jdaehn@missouristate.edu>
- *           // TODO: Replace this line with your name/email in the above format
- * @brief    Entry point of hw01 target.
+ * @file    main.cpp
+ * @author  Jim Daehn <jdaehn@missouristate.edu>
+ * @brief   Entry point of hw01 target.
  */
 
 #include "csc232.h"

@@ -1,5 +1,10 @@
 /**
- * @brief
+ * CSC232 - Data Structures
+ * Missouri State University, Fall 2021
+ *
+ * @file    toy-box.h
+ * @author  Jim Daehn <jdaehn@missouristate.edu>
+ * @brief   ToyBox specification.
  */
 
 #ifndef CSC232_TOY_BOX_H__

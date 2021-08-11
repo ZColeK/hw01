@@ -1,3 +1,12 @@
+/**
+ * CSC232 - Data Structures
+ * Missouri State University, Fall 2021
+ *
+ * @file    magic-box.cpp
+ * @author  Jim Daehn <jdaehn@missouristate.edu>
+ * @brief   MagicBox implementation.
+ */
+
 #include "magic-box.h"
 
 template<typename ItemType>
