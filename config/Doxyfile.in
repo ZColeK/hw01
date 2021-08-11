@@ -32,19 +32,19 @@ DOXYFILE_ENCODING      = UTF-8
 # title of most generated pages and in a few other places.
 # The default value is: My Project.
 
-PROJECT_NAME           = "hw03b"
+PROJECT_NAME           = "hw"
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number. This
 # could be handy for archiving the generated documentation or if some version
 # control system is used.
 
-PROJECT_NUMBER         =
+PROJECT_NUMBER         = 01
 
 # Using the PROJECT_BRIEF tag one can provide an optional one line description
 # for a project that appears at the top of each page and should give viewer a
 # quick idea about the purpose of the project. Keep the description short.
 
-PROJECT_BRIEF          = "CSC232 - Data Structures, Missouri State University, Spring 2020"
+PROJECT_BRIEF          = "CSC232 - Data Structures, Missouri State University, Fall 2021"
 
 # With the PROJECT_LOGO tag one can specify a logo or an icon that is included
 # in the documentation. The maximum height of the logo should not exceed 55
@@ -1952,7 +1952,7 @@ GENERATE_MAN           = NO
 MAN_OUTPUT             = man
 
 # The MAN_EXTENSION tag determines the extension that is added to the generated
-# man pages. In case the manual section does not start with a number, the number
+# man pages. In case the manual section does not Start with a number, the number
 # 3 is prepended. The dot (.) at the beginning of the MAN_EXTENSION tag is
 # optional.
 # The default value is: .3.

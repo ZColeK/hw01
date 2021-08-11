@@ -1,15 +1,15 @@
 /**
  * CSC232 - Data Structures
- * Missouri State University, Spring 2021
+ * Missouri State University, Fall 2021
  *
  * @file    expanded_templates.h
  * @author  Jim Daehn <jdaehn@missouristate.edu>
  * @brief   Class template expansions.
  */
 
-#ifndef MSU_CSC232_EXPANDED_TEMPLATES_H__
-#define MSU_CSC232_EXPANDED_TEMPLATES_H__
+#ifndef CSC232_EXPANDED_TEMPLATES_H__
+#define CSC232_EXPANDED_TEMPLATES_H__
 
 /* Include class template implementation files as needed */
 
-#endif // MSU_CSC232_EXPANDED_TEMPLATES_H__
+#endif // CSC232_EXPANDED_TEMPLATES_H__
