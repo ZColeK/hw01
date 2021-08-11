@@ -1,79 +1,48 @@
 cmake_minimum_required(VERSION 3.10)
-# TODO: Search and replace hwn with appropriate values in this file
-project(hwn)
-
-# Set compiler flags based on environment
-if (MSVC)
-    # Force to always compile with W4
-    if (CMAKE_CXX_FLAGS MATCHES "/W[0-4]")
-        string(REGEX REPLACE "/W[0-4]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
-    else ()
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /W4")
-    endif ()
-    message("Compiler: MSVC")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zi /std:c++14")
-elseif (CMAKE_COMPILER_IS_GNUCC OR CMAKE_COMPILER_IS_GNUCXX)
-    # Update if necessary
-    message("Compiler: gnucc or gnucxx")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic -g")
-elseif((CMAKE_C_COMPILER_ID MATCHES "Clang") OR (CMAKE_CXX_COMPILER_ID MATCHES "Clang"))
-    message("Compiler: Clang")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wno-long-long -pedantic -g -std=c++14")
-endif ()
-
-message("CMAKE_CXX_FLAGS =${CMAKE_CXX_FLAGS}")
-
-# Download and unpack googletest at configure time
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config/CMakeLists.txt.in googletest-download/CMakeLists.txt)
-execute_process(COMMAND ${CMAKE_COMMAND} -G "${CMAKE_GENERATOR}" .
-        RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
-if (result)
-    message(FATAL_ERROR "CMake step for googletest failed: ${result}")
-endif ()
-execute_process(COMMAND ${CMAKE_COMMAND} --build .
-        RESULT_VARIABLE result
-        WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/googletest-download)
-if (result)
-    message(FATAL_ERROR "Build step for googletest failed: ${result}")
-endif ()
-
-# Prevent overriding the parent project's compiler/linker settings on Windows
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
-
-# Add googletest directly to our build. This defines the gtest and gtest_main targets.
-add_subdirectory(${CMAKE_CURRENT_BINARY_DIR}/googletest-src
-        ${CMAKE_CURRENT_BINARY_DIR}/googletest-build
-        EXCLUDE_FROM_ALL)
-
-# The gtest/gtest_main targets carry header search path dependencies automatically
-# when using CMake 2.8.11 or later. Otherwise we have to add them here ourselves.
-if (CMAKE_VERSION VERSION_LESS 2.8.11)
-    include_directories("${gtest_SOURCE_DIR}/include")
-endif ()
+project(hw01)
 
 set(CMAKE_CXX_STANDARD 14)
 
 set(SRC_MAIN_FILES
         src/main.cpp)
 set(SRC_DEMO_FILES
-        src/demo.cpp)
+        src/demo.cpp
+        src/car.cpp)
 set(SRC_TEST_FILES
-        test/google_test_runner.cpp)
+        test/hw01-test.cpp)
 
-add_executable(hwn ${SRC_MAIN_FILES})
-add_executable(hwnDemo ${SRC_DEMO_FILES})
-# Now simply link against gtest or gtest_main as needed.
-add_executable(hwnTest ${SRC_TEST_FILES})
-target_link_libraries(hwnTest gtest_main)
-target_include_directories(hwn PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_include_directories(hwnDemo PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_include_directories(hwnTest PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+# FetchContent ...
+Include(FetchContent)
+
+FetchContent_Declare(
+        Catch2
+        GIT_REPOSITORY https://github.com/catchorg/Catch2.git
+        GIT_TAG        v2.13.1
+)
+
+FetchContent_MakeAvailable(Catch2)
+
+add_executable(hw01 ${SRC_MAIN_FILES})
+add_executable(hw01-demo ${SRC_DEMO_FILES})
+add_executable(hw01-tests ${SRC_TEST_FILES})
+
+target_link_libraries(hw01-tests PRIVATE Catch2::Catch2)
+
+target_include_directories(hw01 PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_include_directories(hw01-demo PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/src)
+target_include_directories(hw01-tests PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include ${CMAKE_CURRENT_SOURCE_DIR}/src)
+
+# Setup automatic test registration
+list(APPEND CMAKE_MODULE_PATH ${catch2_SOURCE_DIR}/contrib)
+
+include(CTest)
+include(Catch)
+catch_discover_tests(hw01-tests)
 
 # add custom commands that copy data input files to target working directories
-add_custom_command(TARGET hwn PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/resource/mainData.txt ${CMAKE_CURRENT_BINARY_DIR})
-add_custom_command(TARGET hwnDemo PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/resource/demoData.txt ${CMAKE_CURRENT_BINARY_DIR})
-add_custom_command(TARGET hwnTest PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/resource/testData.txt ${CMAKE_CURRENT_BINARY_DIR})
+add_custom_command(TARGET hw01 PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/resource/mainData.txt ${CMAKE_CURRENT_BINARY_DIR})
+add_custom_command(TARGET hw01-demo PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/resource/demoData.txt ${CMAKE_CURRENT_BINARY_DIR})
+add_custom_command(TARGET hw01-tests PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different ${CMAKE_SOURCE_DIR}/resource/testData.txt ${CMAKE_CURRENT_BINARY_DIR})
 
 # first we can indicate the documentation build as an option and set it to OFF by default
 option(BUILD_DOC "Build documentation" OFF)
