@@ -451,6 +451,14 @@ In file included from /c/Users/jdaehn/CLionProjects/msu-csc232-fa21/hw01-solutio
 make[3]: *** [CMakeFiles/hw01.dir/build.make:63: CMakeFiles/hw01.dir/src/main.cpp.o] Error 1
 ```
 
+After you have created this new file, add it to revision control, commit your changes and push the commit to GitHub using the following `git` commands (the output, where it occurred, has been ommitted for clarity).
+
+```bash
+git add include/box-interface.h
+git commit -m"HW01 - Initial import of BoxInterface specification."
+git push
+```
+
 ### Part 2: Refactor `PlainBox`
 
 In Part 2 we modify the `PlainBox` declaration so that it "implements" the `BoxInterface`.
@@ -467,9 +475,18 @@ In Part 2 we modify the `PlainBox` declaration so that it "implements" the `BoxI
    #include "box-interface.h"
    ```
 
+After you have modified the `PlainBox` header file accordingly, commit your changes and push the commit to GitHub using the following commands (again the outuput, where it occurred, has been ommitted for clarity).
+
+```bash
+git add include/box-interface.h
+git commit -m"HW01 - Initial import of BoxInterface specification."
+git push
+```
+
+As a final step, log onto GitHub and make sure that your pull request has all your commits. If it doesn't, make a final commit and/or push your last commit to GitHub. Also, make sure that you have added `professordaehn` as a Reviewer on your pull request.
 ## Submission Details
 
-As usual, prior to submitting your assignment to Blackboard, be sure that you have committed and pushed your final changes to GitHub. If you have not done so already, create a **pull request** that seeks to merge your `develop` branch into your `trunk` branch.  Submit the URL of your assignment _repository_ (i.e., _not_ the URL of the pull request) as a Link Resource in Blackboard. Please note: the timestamp of the submission on Blackboard is used to assess any late penalties if and when warranted.
+As usual, prior to submitting your assignment to Blackboard, be sure that you have committed and pushed your final changes to GitHub. If you have not done so already, create a **pull request** that seeks to merge your `develop` branch into your `trunk` branch.  Submit the URL of your assignment _repository_ (i.e., _not_ the URL of the pull request) as a Text Submission in Blackboard. Please note: the timestamp of the submission on Blackboard is used to assess any late penalties if and when warranted.
 
 ### Due Date
 
