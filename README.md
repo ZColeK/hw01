@@ -369,6 +369,20 @@ Once your branch has been pushed to GitHub and you have pushed some changes that
 
 You can create this pull request anytime after you've pushed a commit to your `develop` branch. If you find that you have additional commits to push to GitHub, there is no need to create another pull request; the existing one is automatically with your latest pushes.
 
+For example, below is a sample session by a student with the GitHub username of `student-daehn-alter-ego`:
+
+![Git Bash](git-bash.png)
+
+Notice that after pushing his commits the first time (using the `-u` flag), `git` responsed with a URL that when followed, would create the necessary pull request. It is recommended that you follow this URL at this point an make sure your pull request is created. Then, whenever you push a new commit (or set of commits), the pull request is automatically updated with your latest changes.
+
+If your using Microsoft Visual Code, you can open your source repository from with GitBash using the command:
+
+```bash
+code .
+```
+
+Don't forget the trailing period `.` for it specifies to code that you want to open the current directory.
+
 ## Tasks
 
 This assignment requires two tasks:
